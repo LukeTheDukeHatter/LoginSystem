@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .textbox {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Send Email</h1>
+            <form action="SendEmail" method="post">
+                <div class="textbox">
+                    <input type="text" placeholder="Sender" name="Sender" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Subject" name="Subject" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Body" name="Body" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" placeholder="Recipient" name="Recipient" required>
+                </div>
+                <input type="submit" class="btn" value="Send">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

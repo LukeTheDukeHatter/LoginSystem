@@ -1,0 +1,193 @@
+<html>
+
+<head>
+    <title>Verification Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: min(500px, 100vw);
+            height: min(450px, 100vh);
+            border-radius: 10px;
+            border: 1px rgba(200, 200, 200, 0.6) solid;
+        }
+        
+        form {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            height: 60%;
+            width: 100%;
+        }
+        
+        .barline {
+            width: 90%;
+            display: block;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .barline>span {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .barline>span:before,
+        .barline>span:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 9999px;
+            height: 1.5px;
+            background: #CCCCCC;
+        }
+        
+        .barline>span:before {
+            right: 100%;
+            margin-right: 15px;
+        }
+        
+        .barline>span:after {
+            left: 100%;
+            margin-left: 15px;
+        }
+        
+        .container>*,
+        form>* {
+            margin: 7.5px;
+        }
+        
+        .container>a {
+            margin: 0;
+        }
+        
+        input[type=text] {
+            width: 60px;
+            height: 100%;
+            border-radius: 3px;
+            border: 1px solid #CCCCCC;
+            padding: 20px 10px 20px 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 30px;
+            margin: 0px 7.5px;
+            text-align: center;
+        }
+        
+        .signup {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: large;
+            width: 55%;
+            border-radius: 3px;
+            background-color: #1f35f2;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .CodeHolder {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: row;
+            height: 85px;
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Headers"></div>
+    <div class="container">
+        <img src="MyLogo.png" style="width:50%; margin-top: 20px">
+        <h2 id="txtbx" style="font-family: 'Roboto', sans-serif; font-size: 20px; text-align: center;"></h2>
+        <form>
+            <div class="CodeHolder">
+                <input type="text" name="p1" id="c1" maxlength="1" tabindex="1">
+                <input type="text" name="p2" id="c2" maxlength="1">
+                <input type="text" name="p3" id="c3" maxlength="1">
+                <input type="text" name="p4" id="c4" maxlength="1">
+                <input type="text" name="p5" id="c5" maxlength="1">
+                <input type="text" name="p6" id="c6" maxlength="1">
+            </div>
+            <input type="submit" class="signup" value="Verify">
+        </form>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const TextBox = document.getElementById('txtbx');
+        TextBox.innerHTML = "Please enter the code we've just sent to:<br>{EmailReplace}";
+
+        const sect1 = document.getElementById("c1");
+        const sect2 = document.getElementById("c2");
+        const sect3 = document.getElementById("c3");
+        const sect4 = document.getElementById("c4");
+        const sect5 = document.getElementById("c5");
+        const sect6 = document.getElementById("c6");
+
+        sect1.addEventListener('input', function() {
+            if (sect1.value.length == 1) {
+                sect2.focus();
+            } else {
+                sect1.value = "";
+            }
+        });
+        sect2.addEventListener('input', function() {
+            if (sect2.value.length == 1) {
+                sect3.focus();
+            } else {
+                sect2.value = "";
+                sect1.focus();
+            }
+        });
+        sect3.addEventListener('input', function() {
+            if (sect3.value.length == 1) {
+                sect4.focus();
+            } else {
+                sect3.value = "";
+                sect2.focus();
+            }
+        });
+        sect4.addEventListener('input', function() {
+            if (sect4.value.length == 1) {
+                sect5.focus();
+            } else {
+                sect4.value = "";
+                sect3.focus();
+            }
+        });
+        sect5.addEventListener('input', function() {
+            if (sect5.value.length == 1) {
+                sect6.focus();
+            } else {
+                sect5.value = "";
+                sect4.focus();
+            }
+        });
+        sect6.addEventListener('input', function() {
+            if (sect6.value.length == 1) {
+                sect6.blur();
+            } else {
+                sect6.value = "";
+                sect5.focus();
+            }
+        });
+    </script>
+</body>
+
+</html>

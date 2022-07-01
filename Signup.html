@@ -1,0 +1,172 @@
+<html>
+
+<head>
+    <title>Signup Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap');
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            display: flex;
+            /* justify-content: start; */
+            align-items: center;
+            flex-direction: column;
+            width: min(500px, 100vw);
+            height: min(600px, 100vh);
+            border-radius: 10px;
+            border: 1px rgba(200, 200, 200, 0.6) solid;
+        }
+        
+        form {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            height: 52%;
+            width: 100%;
+        }
+        
+        .barline {
+            width: 90%;
+            display: block;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .barline>span {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .barline>span:before,
+        .barline>span:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 9999px;
+            height: 1.5px;
+            background: #CCCCCC;
+        }
+        
+        .barline>span:before {
+            right: 100%;
+            margin-right: 15px;
+        }
+        
+        .barline>span:after {
+            left: 100%;
+            margin-left: 15px;
+        }
+        
+        .container>*,
+        form>* {
+            margin: 7.5px;
+        }
+        
+        .container>a {
+            margin: 0;
+        }
+        
+        input[type=email],
+        input[type=password],
+        input[type=text] {
+            width: 55%;
+            height: 30px;
+            border-radius: 3px;
+            border: 1px solid #CCCCCC;
+            padding: 20px 10px 20px 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: large;
+        }
+        
+        input[type=submit] {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: large;
+            width: 55%;
+            border-radius: 3px;
+            background-color: #1f35f2;
+            border: 1px #1f35f2 solid;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        
+        .signup {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            font-size: large;
+            width: 55%;
+            border-radius: 3px;
+            background-color: #EEEEEE;
+            border: none;
+            color: black;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Headers"></div>
+    <div class="container">
+        <img src="MyLogo.png" style="width:50%; margin-top: 20px">
+        <form action="register" method="post">
+            <input type="email" placeholder="Email" name="Email" required>
+            <input type="text" placeholder="Username" name="Username" pattern="[a-zA-Z0-9]+" minlength="4" required>
+            <input id="PWordBox" type="password" placeholder="Password" name="Password" required>
+
+            <div id="StrengthDisp"></div>
+
+            <input type="password" placeholder="Confirm Password" name="confirmpassword" required>
+            <input type="submit" class="btn" value="Register">
+        </form>
+        <div class="barline"><span style="font-family: 'Poppins', sans-serif;">Already got an account?</span></div>
+        <button class="signup">Login</button>
+    </div>
+    <script>
+        const password = document.getElementById('PWordBox');
+
+        let timeout;
+        const strbadge = document.getElementById('StrengthDisp');
+
+        // The strong and weak password Regex pattern checker
+        let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+        let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))')
+
+        function checkPassword(pwv) {
+            if (strongPassword.test(pwv)) {
+                strbadge.innerHTML = '<span style="color: #3EB434;">Strong Password</span>';
+            } else if (mediumPassword.test(pwv)) {
+                strbadge.innerHTML = '<span style="color: #F29E1F;">Medium Password</span>';
+            } else {
+                strbadge.innerHTML = '<span style="color: #F21F1F;">Weak Password</span>';
+            }
+        }
+
+        password.addEventListener('input', function() {
+            strbadge.style.display = 'block';
+            clearTimeout(timeout);
+            timeout = setTimeout(checkPassword(password.value), 500);
+            if (password.value.length !== 0) {
+                strbadge.style.display = 'block';
+            } else {
+                strbadge.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
